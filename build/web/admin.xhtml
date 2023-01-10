@@ -1,0 +1,283 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="stylesheet" href="CSS/styles.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"
+        ></script>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display;=swap");
+
+            * {
+                font-family: "Poppins", sans-serif;
+                font-size: 1.02rem;
+            }
+
+            html,
+            body {
+                height: 100%;
+                background-color: white;
+            }
+
+            .input-focus:focus {
+                border-color: #004aad;
+                box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 25%);
+            }
+
+/*            .table-orange {
+                background-color: #000000;
+            }*/
+
+/*            .button-blue {
+                background-color: #DEB887;
+            }
+
+            .button-blue:hover {
+                background-color: #000000;
+            }*/
+
+            .button-blue:focus {
+                border-color: #004aad;
+                box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 25%);
+            }
+
+            /* style untuk scroll tbody */
+            .tableFixHead {
+                overflow: auto;
+                height: 575px;
+            }
+            .tableFixHead thead {
+                position: sticky;
+                top: 0;
+                z-index: 1;
+            }
+
+            thead {
+                background-color: #212529;
+                color: white;
+            }
+            
+            .input-focus:focus {
+                border-color: #ffa31b;
+                box-shadow: 0 0 0 0.25rem rgb(225 162 33 / 25%);
+            }
+            
+            .first-row {
+                height: 10%;
+            }
+            
+            .second-row {
+                height: 90%
+            }
+        </style>
+    </h:head>
+    <h:body>
+       
+       
+<!--        BODY-->
+        <div class="container-fluid h-100">
+            <div class="row first-row">
+                <div class="col g-0 h-100">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white px-3">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="#">
+                                <h:graphicImage class="img-fluid" value="imgs/logorestaurant.png" alt="logo" width="250"/>
+                            </a>
+                            <button
+                                class="navbar-toggler"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                                >
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div
+                                class="collapse navbar-collapse justify-content-end"
+                                id="navbarSupportedContent"
+                                >
+                                <h:form>
+                                    <h:commandButton
+                                        value="Logout"
+                                        action="/index.xhtml"
+                                        class="btn text-white btn-info"
+                                        type="submit"
+                                    /><br/><br/>
+                                    <h:commandButton
+                                        value="Register"
+                                        action="/register.xhtml"
+                                        class="btn text-white btn-info"
+                                        type="submit"
+                                    />
+                                </h:form>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            
+            
+            <div class="row second-row">
+                <div class="col-sm-12 col-md-12 px-4">
+                    <h2 class="mt-5" style="color:#000000">Customer Data</h2>
+                    <div class="table-responsive mt-3 tableFixHead">
+                        <h:dataTable
+                            value="#{pelanggan.getAllRecords()}"
+                            var="pel"
+                            class="table table-striped table-hover"
+                        >
+                            <h:column>
+                                <f:facet name="header">ID</f:facet>
+                                #{pel.id}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                #{pel.nama}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Phone Number</f:facet>
+                                #{pel.phone}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Date</f:facet>
+                                #{pel.date}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Seats</f:facet>
+                                #{pel.seats}
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                     <!--taruh sini-->
+                </div>
+               <div class="manipulation col-sm-12 col-md-12 px-4 p-0 m-0  ">
+                    <h2 class="mt-3" style="color:#000000">Manipulation Data</h2>
+                    <h:form class="mt-3 needs-validation" p:novalidate="true">
+                        <div class="row mb-3">
+                            <h:outputLabel for="id" class="col-sm-3 col-form-label" value="Customer ID"/>
+                            <div class="col-sm-9">
+                                <h:inputText p:type="number" class="form-control input-focus" id="id" p:required="true" value="#{pelanggan.id}" autocomplete="off"/>
+                                <div class="invalid-feedback">
+                                    Please enter a Customer ID
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <h:commandButton type="submit" class="search submit text-white" value="Search" action="#{pelanggan.getById}"/>
+                        </div>
+                    </h:form>
+                    <hr/>
+                    <h:form class="needs-validation" p:novalidate="true">    
+                        <h:inputHidden
+                            class="form-control input-focus"
+                            
+                            value="#{pelanggan.id}"
+                        />
+                        <div class="mb-3">
+                            <h:outputLabel for="name" class="form-label">
+                                Name
+                            </h:outputLabel>
+                            <h:inputText
+                                class="form-control input-focus"
+                                id="nama"
+                                value="#{pelanggan.nama}"
+                                p:required="true"
+                                />
+                            <div class="invalid-feedback">
+                                Please enter customer name
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h:outputLabel for="phone" class="form-label">Phone Number</h:outputLabel>
+                            <h:inputText
+                                class="form-control input-focus"
+                                id="phone"
+                                value="#{pelanggan.phone}"
+                                p:required="true"
+                            />
+                            <div class="invalid-feedback">
+                                Please enter customer phone number
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h:outputLabel for="date" class="form-label">Date</h:outputLabel>
+                            <h:inputText
+                                class="form-control input-focus"
+                                id="date"
+                                value="#{pelanggan.date}"
+                                p:required="true"
+                                />
+                            <div class="invalid-feedback">
+                                Please enter the date
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h:outputLabel for="seats" class="form-label">Seats</h:outputLabel>
+                            <h:inputText
+                                class="form-control input-focus"
+                                id="seats"
+                                value="#{pelanggan.seats}"
+                                p:required="true"
+                                />
+                            <div class="invalid-feedback">
+                                Please enter amount of guest
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-12 col-md-4 mb-3">
+                                <h:commandButton class="create btn black w-100" value="Create" action="#{pelanggan.savePelanggan()}"/>
+                            </div>
+                            <div class="col-sm-12 col-md-4 mb-3">
+                                <h:commandButton class="update btn  w-100" value="Update" action="#{pelanggan.editPelanggan()}"/>
+                            </div>
+                            <div class="col-sm-12 col-md-4 mb-3">
+                                <h:commandButton class="delete btn  vanilla w-100" value="Delete" action="#{pelanggan.deletePelanggan()}"/>
+                            </div>
+                          </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                    .forEach(function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            }
+
+                            form.classList.add('was-validated')
+                        }, false)
+                   })
+            })()
+        </script>
+    </h:body>
+</html>
+

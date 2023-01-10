@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 13, 2022 1:46:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="palladium" name="POJO.Pelanggan" optimistic-lock="version" table="pelanggan">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nama" type="string">
+      <column length="55" name="nama" not-null="true"/>
+    </property>
+    <property name="date" type="string">
+      <column length="55" name="date" not-null="true"/>
+    </property>
+    <property name="seats" type="string">
+      <column length="55" name="seats" not-null="true"/>
+    </property>
+    <property name="phone" type="string">
+      <column length="55" name="phone" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>
